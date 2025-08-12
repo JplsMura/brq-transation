@@ -1,61 +1,128 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Desafio Técnico - API de Análise de Transações
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Descrição do Projeto:
+Uma API RESTful desenvolvida para um sistema de análise de transações financeiras com o objetivo de sinalizar possíveis 
+fraudes com base em regras de risco. A aplicação foi construída com PHP/Laravel, seguindo uma arquitetura de 
+camadas (Controller, Service, Repository) e implementando diferenciais como mensageria, autenticação via JWT, cache e CI/CD.
 
-## About Laravel
+# Tecnologias Utilizadas:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Linguagem: PHP 8.3
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Framework: Laravel 11
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Banco de Dados: MySQL ou PostgreSQL
 
-## Learning Laravel
+Mensageria: Filas do Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Autenticação: JWT (JSON Web Tokens)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Testes: PestPHP e PHPUnit
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Automação: GitHub Actions para CI/CD
 
-## Laravel Sponsors
+# Requisitos do Desafio (Mínimo)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+API RESTful com endpoints para
 
-### Premium Partners
+POST /transactions, GET /transactions/{id} e GET /transactions.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Modelo de transação com campos
 
-## Contributing
+id, cpf_cnpj, valor, data_hora, localizacao, status, motivo_risco.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Lógica de risco simples: Transações acima de R$1000 entre 22h e 6h devem ser marcadas como "alto risco".
 
-## Code of Conduct
+Banco de dados relacional (MySQL ou PostgreSQL).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Testes unitários para a lógica de risco.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+README com instruções para rodar o projeto.
 
-## License
+# Diferenciais (Plus)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aplicação com estrutura limpa (camada de serviços e repositórios).
+
+Uso de boas práticas de arquitetura (SOLID, DDD).
+
+Cobertura de testes acima de 60%.
+
+Criação de um sistema de mensageria (simulado com filas) para processar transações em background.
+
+Implementação de autenticação básica via token (JWT).
+
+Scripts de CI/CD simulados com GitHub Actions.
+
+Implementação opcional de cache para a listagem de transações.
+
+# Como Rodar o Projeto (com Docker)
+Este projeto utiliza Docker para criar um ambiente de desenvolvimento isolado e fácil de reproduzir.
+
+    ° Instalação do Docker: Certifique-se de ter o Docker e o Docker Compose instalados na sua máquina.
+
+Configuração do Ambiente:
+
+Crie o arquivo docker-compose.yml e a pasta docker com as configurações do Nginx e PHP.
+
+No arquivo .env, configure o banco de dados para usar o serviço db.
+
+Execução dos Contêineres:
+
+No terminal, na pasta raiz do projeto, execute:
+
+Bash
+
+docker-compose up -d --build
+Instalação das Dependências:
+
+Acesse o terminal do contêiner da aplicação e instale as dependências:
+
+Bash
+
+docker-compose exec app composer install
+Configuração do Projeto:
+
+Gere a chave da aplicação:
+
+Bash
+
+docker-compose exec app php artisan key:generate
+Execute as migrações:
+
+Bash
+
+docker-compose exec app php artisan migrate
+Crie um usuário de teste:
+
+Bash
+
+docker-compose exec app php artisan db:seed --class=UserSeeder
+Acesso à Aplicação:
+
+A aplicação estará disponível em http://localhost.
+
+Instruções para a API
+
+POST /api/auth/token: Endpoint para fazer login e obter um token JWT.
+
+GET|POST /api/transactions: Endpoints para listar e cadastrar transações. Protegidos por autenticação JWT.
+
+# Decisões Técnicas Principais:
+
+Arquitetura de Camadas: O projeto segue o padrão Controller -> Service -> Repository para garantir a separação de responsabilidades e facilitar a manutenção e os testes.
+
+
+Mensageria com Filas: Para o requisito de processamento em segundo plano, a lógica de risco foi movida para um Job em fila, garantindo 
+que o tempo de resposta da API seja rápido e o sistema seja mais escalável.
+
+
+Autenticação JWT: O JWT foi escolhido para a autenticação da API por ser um padrão flexível e amplamente utilizado, alinhado com as boas práticas de segurança.
+
+
+Cache: A listagem de transações utiliza cache para otimizar o desempenho em consultas repetidas, reduzindo a carga no banco de dados.
+
+# Desafios e Evoluções Futuras:
+
+A notificação do status de uma transação processada em segundo plano foi implementada via Polling. 
+Uma evolução futura seria usar Server-Sent Events (SSE) para uma notificação em tempo real mais eficiente.
