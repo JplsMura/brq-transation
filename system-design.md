@@ -1,4 +1,4 @@
-# System Design - Desafio técnico****
+# System Design - Desafio técnico
 
 # 1. Arquitetura Geral
 Para atender aos requisitos de alta performance e tolerância a falhas, propõe-se uma arquitetura em microsserviços e orientada a eventos (Event-Driven).
@@ -32,7 +32,7 @@ O Serviço de Persistência atualiza o status final da transação no banco de d
 
 O cliente consulta o status da transação via GET no Serviço de Consulta.
 
-2. Escolha de Tecnologias
+# 2. Escolha de Tecnologias
 Linguagem de Programação: PHP com Laravel e Kotlin com Spring Boot.
 
 Justificativa: PHP/Laravel oferece agilidade no desenvolvimento para a camada de ingestão. Kotlin/Spring Boot é ideal para o Serviço de Análise de Risco, que exige alta performance para processamentos complexos.
@@ -52,7 +52,7 @@ Observabilidade: ELK Stack e Prometheus com Grafana.
 Justificativa: Ferramentas cruciais para "logs e rastreabilidade" e para monitorar métricas do sistema.
 
 
-3. Estratégia de Escalabilidade e Tolerância a Falhas
+# 3. Estratégia de Escalabilidade e Tolerância a Falhas
 Escalabilidade Horizontal: A arquitetura de microsserviços permite escalar cada serviço independentemente. Em um cenário de alto volume, podemos adicionar mais instâncias do Serviço de Análise de Risco para consumir a fila de forma paralela.
 
 Tolerância a Falhas: A mensageria atua como um buffer. Se um serviço falhar, a mensagem pode ser reprocessada.
@@ -60,12 +60,12 @@ Tolerância a Falhas: A mensageria atua como um buffer. Se um serviço falhar, a
 
 Rastreabilidade: Com a observabilidade, cada transação pode ser rastreada do início ao fim, atendendo ao requisito de "rastreabilidade".
 
-4. Justificativa das Decisões Técnicas
+# 4. Justificativa das Decisões Técnicas
 As decisões foram tomadas para alinhar a arquitetura aos requisitos do desafio. A arquitetura de microsserviços e a mensageria garantem que o sistema seja "escalável" e "tolerante a falhas" , e que a análise ocorra em "até 2 segundos". As escolhas de tecnologia visam o equilíbrio entre agilidade de desenvolvimento e alta performance.
 
 Uma breve descrição sobre o que esse projeto faz e para quem ele é
 
-1. Arquitetura Geral
+# 1. Arquitetura Geral
 Para atender aos requisitos de alta performance e tolerância a falhas, propõe-se uma arquitetura em microsserviços e orientada a eventos (Event-Driven).
 
 Componentes:
@@ -97,7 +97,7 @@ O Serviço de Persistência atualiza o status final da transação no banco de d
 
 O cliente consulta o status da transação via GET no Serviço de Consulta.
 
-2. Escolha de Tecnologias
+# 2. Escolha de Tecnologias
 Linguagem de Programação: PHP com Laravel e Kotlin com Spring Boot.
 
 Justificativa: PHP/Laravel oferece agilidade no desenvolvimento para a camada de ingestão. Kotlin/Spring Boot é ideal para o Serviço de Análise de Risco, que exige alta performance para processamentos complexos.
@@ -117,7 +117,7 @@ Observabilidade: ELK Stack e Prometheus com Grafana.
 Justificativa: Ferramentas cruciais para "logs e rastreabilidade" e para monitorar métricas do sistema.
 
 
-3. Estratégia de Escalabilidade e Tolerância a Falhas
+# 3. Estratégia de Escalabilidade e Tolerância a Falhas
 Escalabilidade Horizontal: A arquitetura de microsserviços permite escalar cada serviço independentemente. Em um cenário de alto volume, podemos adicionar mais instâncias do Serviço de Análise de Risco para consumir a fila de forma paralela.
 
 Tolerância a Falhas: A mensageria atua como um buffer. Se um serviço falhar, a mensagem pode ser reprocessada.
@@ -125,5 +125,5 @@ Tolerância a Falhas: A mensageria atua como um buffer. Se um serviço falhar, a
 
 Rastreabilidade: Com a observabilidade, cada transação pode ser rastreada do início ao fim, atendendo ao requisito de "rastreabilidade".
 
-4. Justificativa das Decisões Técnicas
+# 4. Justificativa das Decisões Técnicas
 As decisões foram tomadas para alinhar a arquitetura aos requisitos do desafio. A arquitetura de microsserviços e a mensageria garantem que o sistema seja "escalável" e "tolerante a falhas" , e que a análise ocorra em "até 2 segundos". As escolhas de tecnologia visam o equilíbrio entre agilidade de desenvolvimento e alta performance.
