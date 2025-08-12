@@ -10,6 +10,7 @@ trait ApiResponse
     {
         $res = [
             'success' => true,
+            'data' => $data
         ];
 
         if(!empty($data)) {

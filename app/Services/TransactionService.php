@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\TransactionRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class TransactionService
@@ -37,17 +38,21 @@ class TransactionService
      */
     public function listTransactions(Request $request): LengthAwarePaginator
     {
-        $query = Transaction::query();
+        $cacheKey = 'transactions_list.' . md5(json_encode($request->all()));
 
-        if ($request->has('start_date') && $request->has('end_date')) {
-            $query->whereBetween('data_hora', [$request->input('start_date'), $request->input('end_date')]);
-        }
+        return Cache::remember($cacheKey, now()->addMinutes(5), function () use ($request) {
+            $query = Transaction::query();
 
-        if ($request->has('status')) {
-            $query->where('status', $request->input('status'));
-        }
+            if ($request->has('start_date') && $request->has('end_date')) {
+                $query->whereBetween('data_hora', [$request->input('start_date'), $request->input('end_date')]);
+            }
 
-        return $query->paginate(perPage: 10);
+            if ($request->has('status')) {
+                $query->where('status', $request->input('status'));
+            }
+
+            return $query->paginate(10);
+        });
     }
 
     /**
