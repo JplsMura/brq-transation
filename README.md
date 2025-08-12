@@ -97,7 +97,12 @@ Implementação opcional de cache para a listagem de transações.
 
 6. Acesso à Aplicação:
 
-       A aplicação estará disponível em http://localhost.
+       A aplicação estará disponível em http://localhost
+
+Instruções de Teste da API
+Para facilitar a avaliação da API, você pode usar a coleção do Postman.
+
+Link da Coleção do Postman: https://orange-star-210073.postman.co/workspace/BRQ-Transation~b7ef4e15-7bf3-4aa4-982d-452244336b2b/collection/8788595-7c2bfae3-71fb-4ab8-b8c1-7fc4a9ac3fdb?action=share&creator=8788595
 
 ➡️ Instruções para a API
 
